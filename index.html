@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+</head>
+<body>
+    <h2>Password Strength Checker</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Check Strength</button>
+    <p id="result"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/owasp-password-strength-test@latest/owasp-password-strength-test.js"></script>
+    <script>
+        function checkPassword() {
+            let password = document.getElementById("passwordInput").value;
+            let result = owaspPasswordStrengthTest.test(password);
+            document.getElementById("result").innerText = result.errors.length > 0 
+                ? "Weak Password: " + result.errors.join(', ') 
+                : "Strong Password!";
+        }
+    </script>
+</body>
+</html>
